@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>后台管理</title>
+<include file="snadmin/Home/View/default/index/top.html" />
+<div class="content container_12">
+<div class="box grid_12">
+        <div class="box-content no-pad">
+        <div class="box-head">
+          <h2>提供帮助</h2></div>
+         <include file="snadmin/Home/View/default/index/bc/tgbz_list.html" /></div>
+  </div>
+ 
+</div>
+<div class="footer">
+  <p>Powered by 后台系统</p>
+</div>
+<script> /* SCRIPTS */
+  $(function () {
+      var sin = [], cos = [];
+      for (var i = 0; i < 14; i += 0.5) {
+          sin.push([i, Math.sin(i)]);
+          cos.push([i, Math.cos(i)]);
+      }
+      var plot = $.plot($("#flot-demo"),
+             [ { data: sin, label: "Green", color: "#71a100"}, { data: cos, label: "Blue", color: "#308eef" } ], {
+                 series: {
+                     lines: { show: true },
+                     points: { show: true }
+                 },
+                 grid: { hoverable: true },
+                 yaxis: { min: -1.2, max: 1.2 }
+               });
+      var previousPoint = null;
+      $("#flot-demo").bind("plothover", function (event, pos, item) {
+          if ($("#enablePosition:checked").length > 0) {
+              var str = "(" + pos.x.toFixed(2) + ", " + pos.y.toFixed(2) + ")";
+              $("#hoverdata").text(str);
+          }
+      });
+  });/* for the flot chart demo */
+
+  $('#example').dataTable( {
+      "bJQueryUI": true
+  }); /* For the data tables */
+</script>
+
+
+</body>
+</html>

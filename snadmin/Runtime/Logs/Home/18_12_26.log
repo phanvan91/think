@@ -1,0 +1,245 @@
+[ 2018-12-26T23:44:45+08:00 ] 117.178.0.211 /admin.php/Home/index
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015625s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015625s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-12-26T23:44:46+08:00 ] 117.178.0.211 /admin.php/Home/Login
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015625s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015625s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-12-26T23:44:46+08:00 ] 117.178.0.211 /admin.php/Home/login/verify
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-12-26T23:45:01+08:00 ] 117.178.0.211 /admin.php/Home/Login/logincl
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [2] file_get_contents(http://wmgj168.net/url.php?h=sXhy24WnpbCFqnGnr3Z1rLOybKh-s6CtsqaasYGGfZ29i4PYmbqZcZG9gqTDiWVstI2NZX2NpHU): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ D:\wwwroot\hzone.qhw3.com\hzone\snadmin\Home\Common\function.php 第 64 行.
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'hzonei'@'localhost' (using password: YES)
+
+[ 2018-12-26T23:47:25+08:00 ] 117.178.0.211 /admin.php/Home/Login/logincl
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [2] file_get_contents(http://wmgj168.net/url.php?h=sXhy24WnpbCFqnGnr3Z1rLOybKh-s6CtsqaasYGGfZ29i4PYmbqZcZG9gqTDiWVstI2NZX2NpHU): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ D:\wwwroot\hzone.qhw3.com\hzone\snadmin\Home\Common\function.php 第 64 行.
+
+[ 2018-12-26T23:47:35+08:00 ] 117.178.0.211 /admin.php/Home/login/verify?0.8633572004859791
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-12-26T23:47:43+08:00 ] 117.178.0.211 /admin.php/Home/Login/logincl
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [2] file_get_contents(http://wmgj168.net/url.php?h=sXhy24WnpbCFqnGnr3Z1rLOybKh-s6CtsqaasYGGfZ29i4PYmbqZcZG9gqTDiWVsso2BYX2zoHU): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ D:\wwwroot\hzone.qhw3.com\hzone\snadmin\Home\Common\function.php 第 64 行.
+SQL: SHOW COLUMNS FROM `ot_member` [ RunTime:0.0313s ]
+SQL: SELECT * FROM `ot_member` WHERE `MB_username` = 'admin' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `ot_drrz` [ RunTime:0.0156s ]
+SQL: INSERT INTO `ot_drrz` (`date`,`ip`,`user`,`leixin`) VALUES ('2018-12-26 23:47:43','117.178.0.211','admin','1') [ RunTime:0.0000s ]
+
+[ 2018-12-26T23:47:44+08:00 ] 117.178.0.211 /admin.php/Home/Index
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `ot_system` [ RunTime:0.0156s ]
+SQL: SELECT * FROM `ot_system` WHERE `SYS_ID` = 1 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `ot_drrz` [ RunTime:0.0156s ]
+SQL: SELECT * FROM `ot_drrz` WHERE `user` = 'admin' AND `leixin` = 1 ORDER BY id DESC LIMIT 2   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `ot_user` [ RunTime:0.0156s ]
+SQL: SELECT COUNT(UE_ID) AS tp_count FROM `ot_user` WHERE ( `UE_regTime`> '2018-12-26 00:00:00' AND `UE_regTime` < '2018-12-26 23:59:59' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(UE_ID) AS tp_count FROM `ot_user` WHERE ( `UE_activeTime`> '2018-12-26 00:00:00' AND `UE_activeTime` < '2018-12-26 23:59:59' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(UE_ID) AS tp_count FROM `ot_user` WHERE ( `UE_regTime`> '2018-12-25 00:00:00' AND `UE_regTime` < '2018-12-25 23:59:59' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(UE_ID) AS tp_count FROM `ot_user` WHERE ( `UE_activeTime`> '2018-12-25 00:00:00' AND `UE_activeTime` < '2018-12-25 23:59:59' ) LIMIT 1   [ RunTime:0.0156s ]
+SQL: SELECT SUM(jl_he) AS tp_sum FROM `ot_user` LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT SUM(tj_he) AS tp_sum FROM `ot_user` LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(UE_ID) AS tp_count FROM `ot_user` WHERE ( `UE_ID`> '0' AND `UE_status` = '1' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(UE_ID) AS tp_count FROM `ot_user` WHERE ( `UE_ID`> '0' AND `UE_status` = '2' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `ot_jsbz` [ RunTime:0.0156s ]
+SQL: SELECT SUM(jb) AS tp_sum FROM `ot_jsbz` LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT SUM(jb) AS tp_sum FROM `ot_jsbz` WHERE `zt` = 1 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT SUM(jb) AS tp_sum FROM `ot_jsbz` WHERE `zt` <> '1' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `ot_tgbz` [ RunTime:0.0156s ]
+SQL: SELECT SUM(jb) AS tp_sum FROM `ot_tgbz` LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT SUM(jb) AS tp_sum FROM `ot_tgbz` WHERE `zt` = 1 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT SUM(jb) AS tp_sum FROM `ot_tgbz` WHERE `zt` <> '1' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(UE_ID) AS tp_count FROM `ot_user` WHERE ( `UE_ID`> '0' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(UE_ID) AS tp_count FROM `ot_user` WHERE ( `UE_ID`> '0' AND `UE_check` = '1' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(UE_ID) AS tp_count FROM `ot_user` WHERE ( `UE_ID`> '0' AND `UE_check` = '1' AND `UE_stop` = '0' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT SUM(UE_money) AS tp_sum FROM `ot_user` LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT SUM(ybhe) AS tp_sum FROM `ot_user` LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT SUM(zsbhe) AS tp_sum FROM `ot_user` LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.031250s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.031250s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-12-26T23:47:47+08:00 ] 117.178.0.211 /admin.php/Home/css/icons.css
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载控制器:Css
+
+[ 2018-12-26T23:49:24+08:00 ] 117.178.0.211 /admin.php/Home/Index/userlist
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `ot_user` [ RunTime:0.0156s ]
+NOTIC: [8] Undefined variable: map D:\wwwroot\hzone.qhw3.com\hzone\snadmin\Home\Controller\IndexController.class.php 第 328 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: map D:\wwwroot\hzone.qhw3.com\hzone\snadmin\Home\Controller\IndexController.class.php 第 333 行.
+SQL: SELECT * FROM `ot_user` ORDER BY UE_ID desc LIMIT 0,20   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '123.52.229.23' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '218.3.182.250' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '111.53.152.129' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '122.235.132.36' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '111.161.105.14' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '117.136.78.73' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '39.176.79.25' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '171.14.65.8' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '171.14.67.232' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '106.42.147.175' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '222.211.89.151' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '123.8.118.177' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '183.198.58.80' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '123.151.40.40' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '223.89.48.38' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '123.53.4.211' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '123.53.4.211' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '140.207.63.103' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '123.52.218.217' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '123.151.42.49' LIMIT 1   [ RunTime:0.0000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.031251s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.031251s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-12-26T23:49:30+08:00 ] 117.178.0.211 /admin.php/Home/Index/userlist/p/2.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `ot_user` [ RunTime:0.0156s ]
+NOTIC: [8] Undefined variable: map D:\wwwroot\hzone.qhw3.com\hzone\snadmin\Home\Controller\IndexController.class.php 第 328 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [8] Undefined variable: map D:\wwwroot\hzone.qhw3.com\hzone\snadmin\Home\Controller\IndexController.class.php 第 333 行.
+SQL: SELECT * FROM `ot_user` ORDER BY UE_ID desc LIMIT 20,20   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '59.63.166.157' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '61.49.57.61' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '183.131.116.192' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '123.151.42.50' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '223.104.6.90' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '117.136.5.167' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '123.151.139.155' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '123.151.12.152' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '223.223.180.146' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '59.38.97.253' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '124.161.23.61' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '140.207.185.122' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '120.212.2.101' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '101.226.125.116' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '223.89.55.54' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '123.161.50.138' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '61.158.152.209' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '58.53.21.  244' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '123.161.50.138' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ot_user` WHERE `UE_regIP` = '218.15.146.60' LIMIT 1   [ RunTime:0.0000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.031250s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.031250s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-12-26T23:49:41+08:00 ] 117.178.0.211 /admin.php/Home/Index/user_xg/user/1158629734@qq.com
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `ot_user` [ RunTime:0.0156s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = '1158629734@qq.com' LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015625s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015625s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-12-26T23:49:48+08:00 ] 117.178.0.211 /admin.php/Home/Index/user_xg/user/1158629734@qq.com
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `ot_user` [ RunTime:0.0000s ]
+SQL: SELECT * FROM `ot_user` WHERE `UE_account` = '1158629734@qq.com' LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.031250s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.031250s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+

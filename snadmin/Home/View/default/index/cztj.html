@@ -1,0 +1,68 @@
+﻿
+
+    <div id="main" style="height:200px; width:100%;margin:0 auto;"></div>
+    <script type="text/javascript">
+           // 路径配置
+    require.config({
+        paths:{ 
+            'echarts' : '/js/echarts'
+        }
+    });
+    // 使用
+    require(
+        [
+            'echarts',
+			 'echarts/chart/pie' // 使用柱状图就加载pie模块，即使没有这个路径
+        ],
+            function (ec) {
+                // 基于准备好的dom，初始化echarts图表 还原
+                var myChart = ec.init(document.getElementById('main')); 
+                var option = {
+    title : {
+        text: '统计详情',
+        subtext: '',
+        x:'center'
+    },
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    legend: {
+        orient : 'vertical',
+        x : 'left',
+        datas:['充值总额','交易成功','交易中']
+    },
+    toolbox: {
+        show : true,
+        feature : {
+            <!--mark : {show: true},
+            dataView : {show: true, readOnly: false},
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+    },
+    calculable : true,
+    series : [
+        {
+            name:'统计详情',
+            type:'pie',
+            radius : '55%',
+            center: ['50%', '60%'],
+            datas:[
+                {value:{$z_jgbz}, name:'充值总额'},
+                {value:{$z_jgbx2}, name:'交易成功'},
+                {value:{$z_jgbx3}, name:'交易中'},
+                <!--{value:135, name:'视频广告'},
+                <!--{value:1500, name:'搜索引擎'}
+            ]
+        }
+    ]
+};
+                    
+                    
+                myChart.setOption(option); 
+            }
+        );
+    </script>      
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+</div> 

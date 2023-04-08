@@ -1,0 +1,50 @@
+﻿
+
+<script type="text/javascript" src="/css/js/jsapi.js"></script>
+<script type="text/javascript" src="/css/js/corechart.js"></script>		
+<script type="text/javascript" src="/css/js/jquery.gvChart-1.0.1.min.js"></script>
+<script type="text/javascript" src="/css/js/jquery.ba-resize.min.js"></script>
+
+<script type="text/javascript">
+gvChartInit();
+$(document).ready(function(){
+		$('#myTable1').gvChart({
+			chartType: 'PieChart',
+			gvSettings: {
+			vAxis: {title: 'No of players'},
+			hAxis: {title: 'Month'},
+			height: 338
+		}
+	});
+});
+</script>
+
+</head>
+
+
+<body>
+
+<div style="margin:0 auto;">
+  <table id='myTable1'>
+    <caption>充值交易图谱</caption>
+			<thead>
+				<tr>
+					<th></th>
+					<th>充值总额：{$z_jgbz}</th>
+					<th>交易成功：{$z_jgbz2}</th>
+                    <th>交易中：{$z_jgbz3}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th></th>
+					<td>{$z_jgbz}</td>
+					<td>{$z_jgbz2}</td>
+                    <td>{$z_jgbz3}</td>
+			  </tr>
+			</tbody>
+  </table>  
+	
+</div>
+</body>
+</html>

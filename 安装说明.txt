@@ -1,0 +1,21 @@
+测试环境：phpstudy PHP5.3-5.4+MySql 必须支持伪静态 请严格按照此环境安装程序
+
+安装程序前准备工作：准备好1个域名并指向您的网站目录
+
+1，上传源码至您的空间或服务器并导入 数据库 目录下的 demo_1205.sql 至您的数据库
+
+2，修改根目录 User\Home\Conf\config.php和snadmin\Home\Conf\config.php 文件内的数据库
+连接信息为您的
+
+3，User/Runtime 和 snadmin/Runtime 属于缓存存放文件夹！
+
+   如在安装过程中缓存没有更新可以手动删除
+
+User/Runtime/Cache/Home和snadmin/Runtime/Cache/Home 文件夹下的所有缓
+
+存文件
+
+3，安装完成后后台地址：http://你的域名/admin.php/Home/index
+
+ 
+  管理员帐号：admin  管理员密码：admin

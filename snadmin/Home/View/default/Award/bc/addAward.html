@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="/sncss/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/sncss/js/jquery.js"></script>
+<script>
+function save(){
+	var advImg = $("input[name='advImg']").val();
+	
+	if(advImg==""){
+		alert("请上传广告图片！");
+		return false;
+	}
+	
+	var aType = $(".aType").val();
+	if(aType == ''){
+	    alert("请选择广告类型！");
+		return false;
+	}
+	$("#btn").attr('disabled','disabled').die('click');
+}
+
+</script>
+<style>
+.thumbnail img{margin-left:0;}
+.thumbnail{border:0px}
+</style>
+</head>
+<body>
+<div class="place">
+<span>位置：</span>
+<ul class="placeul">
+<li><a href="javascript:void(0);">抽奖管理</a></li>
+<li><a href="javascript:void(0);">编辑抽奖设置</a></li>
+</ul>
+</div>
+<div class="tools">
+</div>
+<div class="rightinfo">
+<form action="/admin.php/Home/Award/addAward" method="post" class="definewidth m20" onSubmit="return save()" id="newsForm" enctype="multipart/form-data">
+<table width="90%" border="0" cellpadding="5" cellspacing="1" bgcolor="#CCCCCC" class="tablebg" id="table1">
+	<input type="hidden" name="aId" value="{$aId}" id="aId">
+  <tr>
+    <td bgcolor="#FFFFFF" class="tbkey" >奖励类型：</td>
+    <td bgcolor="#FFFFFF" class="tbkey">
+	  <select name="aType" class="aType" style="border:1px solid gray;">
+			
+			<option value="">请选择</option>
+			<option value="1" selected="selected">余额奖励</option>
+			
+		</select>
+	</td>
+  </tr>
+  
+  <tr>
+    <td bgcolor="#FFFFFF" class="tbkey" >金额：</td>
+    <td bgcolor="#FFFFFF" class="tbkey"><div class='edit-face'>
+	    <input type="text" name="num" maxlength="100" value="{$info.num}" id="num" style="width:15%;border:1px solid gray;"> 				
+	</td>
+    </tr>
+	<tr>
+	<td colspan="2" bgcolor="#FFFFFF">
+		<button class="btn btn-primary" type="submit" id="btn">提交</button> &nbsp;&nbsp;<button type="button" onclick="javascript:history.back(-1);" class="btn btn-success" name="backid" id="backid">返回</button>
+	</td>
+	</tr>
+</table>
+</form>
+ 
+</body>
+</html>

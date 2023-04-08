@@ -1,0 +1,75 @@
+<style type="text/css">
+   
+	
+	.scrolldiv2{
+    width:180px;
+    height:300px;
+    position:absolute;
+	right: 20px;
+    top:350px;
+	position:fixed;
+	z-index:99999;
+    }
+</style>
+
+
+
+<div   class="scrolldiv2">
+
+   <volist name="rightadv" id="right">
+       <a href="{$right.link}"><img src="{$right.advimg}"  style="width:190px;height:150px;margin-left:-20px;" /></a>
+   </volist>
+   
+ </div>
+ <script type="text/javascript">
+ 
+   function baoming(){
+          var username=$("input[name='username']").val();
+		  
+		  if($.trim(username) == '' || $.trim(username) =='请填写姓名'){
+		     alert('姓名不能为空');
+			 return false;
+		  }
+		  var phone=$("input[name='phone']").val();
+		   if($.trim(phone) == ''  || $.trim(phone) =='请填写您的手机号码'){
+		     alert('手机号不能为空');
+			 return false;
+		  }
+		  var reg=/^\d{11}/;
+		  if(reg.test(phone) == false){
+		     alert('手机号格式不正确');
+			 return false;
+		  }
+   }
+   // var timer;
+  //  $(function(){
+        $(window).scroll(function(){
+            clearInterval(timer);
+            var topScroll=getScroll();
+            var topDiv="100px";
+            var top=topScroll+parseInt(topDiv);
+            timer=setInterval(function(){
+                    //$(".test").css("top", top+"px");
+                     $(".scrolldiv").animate({"top":top},500);
+					   $(".scrolldiv1").animate({"top":top},500);
+            },500)
+        });
+		
+	
+    })
+	
+	
+	
+   // function getScroll(){
+             var bodyTop = 0;  
+             if (typeof window.pageYOffset != 'undefined') {  
+                     bodyTop = window.pageYOffset;  
+             } else if (typeof document.compatMode != 'undefined' && document.compatMode != 'BackCompat') {  
+                     bodyTop = document.documentElement.scrollTop;  
+             }  
+             else if (typeof document.body != 'undefined') {  
+                     bodyTop = document.body.scrollTop;  
+             }  
+             return bodyTop
+    }
+    </script>

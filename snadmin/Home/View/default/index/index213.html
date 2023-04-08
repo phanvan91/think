@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>后台管理</title>
+<include file="snadmin/Home/View/default/index/top.html" />
+<div class="content container_12">
+      <div class="ad-notif-info grid_12"><p><span>位置：<a href="/admin.php/Home/Index/main">首页</a></span>
+    </p></div>
+
+    
+  <div class="box grid_3">
+        <div class="box-head"><h2>会员统计
+        </div>
+        <div class="box-content ">
+<input type="button" class="button purple" value="系统开关"><if condition="$zt.zt eq '0'" ><input type="button" class="button yellow" value="开启">:<a href="/admin.php/Home/Index/gb"><input type="button" class="button black" value="关闭系统"></a>
+      <else/><input type="button" class="button black" value="关闭">：<a href="/admin.php/Home/Index/kq"><input type="button" class="button yellow" value="开启系统"></a></if>
+
+          <!--
+ 上次登入IP:<if condition="$scip.ip eq ''" >未登过<else/>{$scip.ip}({$scip.date})</if> <br />
+本次登入IP:{$bcip.ip}({$bcip.date})-->
+          <input type="button" class="button red grid_6" value="被封会员：{$zzbf}" />  
+          <input type="button" class="button red grid_5" value="在线人数：{$zzbf}" />       <br>
+          <input type="button" id="open-notif" class="button green grid_5" value="总注册会员：{$zuser}">
+         <input type="button" id="open-comp-notif" class="button blue grid_6" value="未激活会员：{$zzwjh}">
+
+        <input type="button" class="button green grid_6" value="今天注册会员：{$jtzchy}" />
+        <input type="button" class="button green grid_5" value="昨天注册会员：{$ztzchy}" />
+    
+        </div>
+
+</div>
+
+
+<div class="box grid_3">
+        <div class="box-head"><span class="box-icon-24 fugue-24 counter"></span>
+        <h2>可提现金额</h2></div>
+        <div class="box-content ad-stats">
+          <span>
+         <input type="button" id="open-modal-dialog" class="button red  grid_12 " value="系统总金币：{$zjb}元">
+         <input type="button" id="open-modal-dialog" class="button green grid_12" value="系统总经理奖：{$zjlj}元">
+         <input type="button" id="open-modal-dialog" class="button green grid_12" value="系统总推荐奖：{$ztjj}元">
+         <br>
+          </span>
+        </div>
+  </div>
+
+<div class="box grid_3">
+        <div class="box-head"><span class="box-icon-24 fugue-24 counter"></span>
+        <h2>充值交易金额</h2></div>
+        <div class="box-content ad-stats">
+          <ul>
+            <input type="button" id="open-modal-dialog" class="button red grid_12" value="充值总额：{$z_jgbz}元">
+            <input type="button" id="open-modal-dialog" class="button blue grid_12" value="交易成功：{$z_jgbz2}元">
+            <input type="button" id="open-modal-dialog" class="button blue grid_12" value="交易中：{$z_jgbz3}元">
+          </ul>
+        </div>
+  </div>
+  
+  <div class="box grid_3">
+        <div class="box-head"><span class="box-icon-24 fugue-24 counter"></span>
+        <h2>提现交易金额</h2></div>
+        <div class="box-content ad-stats">
+          <ul>
+            <input type="button" id="open-modal-dialog" class="button red grid_12" value="提现总额：{$z_jgtx}元">
+            <input type="button" id="open-modal-dialog" class="button purple grid_12" value="交易成功：{$z_jgtx2}元">
+            <input type="button" id="open-modal-dialog" class="button purple grid_12" value="交易中：{$z_jgtx3}元">
+          </ul>
+        </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>Powered by 后台系统</p>
+</div>
+
+
+
+</body>
+</html>

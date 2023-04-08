@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>html5饼形数据统计图形代码 - 网站源码</title>
+    <!-- 来自百度CDN -->
+      <script src="/js/1-6-10.esl.js"></script>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="height:300px; width:100%;margin:0 auto;"></div>
+    <script type="text/javascript">
+    require.config({
+        paths:{ 
+            'echarts' : '/js/echarts'
+        }
+    });
+    // 使用
+    require(
+        [
+            'echarts',
+			 'echarts/chart/pie' // 使用柱状图就加载pie模块，即使没有这个路径
+        ],
+            function (ec) {
+                // 基于准备好的dom，初始化echarts图表
+                var myChart = ec.init(document.getElementById('main')); 
+                var option = {
+    title : {
+        text: '统计详情',
+        subtext: '',
+        x:'center'
+    },
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    legend: {
+        orient : 'vertical',
+        x : 'left',
+        data:['总注册人数','未激活人数','今日注册人数','昨日注册人数','被封人数']
+    },
+    toolbox: {
+        show : true,
+        feature : {
+            <!--mark : {show: true},
+           <!-- dataView : {show: true, readOnly: false},
+            restore : {show: true},
+           <!-- saveAsImage : {show: true}
+        }
+    },
+    calculable : true,
+    series : [
+        {
+            name:'访问来源',
+            type:'pie',
+            radius : '55%',
+            center: ['50%', '60%'],
+            data:[
+                {value:{$zuser}, name:'总注册人数'},
+                {value:{$zzwjh}, name:'未激活人数'},
+                {value:{$jtzchy}, name:'今日注册人数'},
+                {value:{$ztzchy}, name:'昨日注册人数'},
+				{value:{$zzbf}, name:'被封人数'},
+            ]
+        }
+    ]
+};
+                    
+                    
+                myChart.setOption(option); 
+            }
+        );
+    </script>      
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+</div>
+</body>
+
+ 

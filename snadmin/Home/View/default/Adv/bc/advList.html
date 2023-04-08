@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="/sncss/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/sncss/js/jquery.js"></script>
+<script>
+$(document).ready(function() {
+	$(".delbut").click(function() {
+		if (confirm("是否删除该广告?")) {
+			$.post("/admin.php/Home/Adv/delAdv/aId/"+ this.id, function(data) {
+				if (data > 0) {
+					alert("删除成功！");
+					window.location.reload();
+				}
+			});
+		}
+	});
+	$("#addBut").click(function() {
+		window.location.href = "/admin.php/Home/Adv/addAdv";
+	});
+	
+});
+</script>
+</head>
+<body>
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="javascript:void(0);">广告管理</a></li>
+			<li><a href="javascript:void(0);">广告列表</a></li>
+		</ul>
+	</div>
+	<div class="tools">
+		<ul class="toolbar">
+			<input name="" type="submit" class="btn" id="addBut" value="添加广告"/>	
+				 
+		</ul>
+	</div>
+	<table  class="tablelist">
+		<thead>
+			<tr>
+			
+				<th>广告id</th>
+				<th>广告图片</th>
+				<th>广告位置</th>
+				<th>链接地址</th>
+				<th>添加时间</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<volist name="list" id="news">
+		<tr>
+		    <td>{$news.aid}</td>
+			<td>
+			<if condition="$news.advimg neq ''">
+			<img src="{$news.advimg}" style="width:50px;height:50px;" />
+			<else />
+			暂无
+			</if>
+			</td>
+			<td>
+				<if condition="$news.atype eq 1">
+				  顶部广告
+				</if>
+				<if condition="$news.atype eq 2">
+				  左边广告
+				</if>
+				<if condition="$news.atype eq 3">
+				  右边广告
+				</if>
+			</td>
+			<td>{$news.link}</td>
+			<td>{$news.addtime}</td>
+			<td>
+				<a href="/admin.php/Home/Adv/addAdv/aId/{$news.aid}">编辑</a> | 
+				<a href="javascript:void(0);" class="delbut" id="{$news.aid}">删除</a>
+			</td>
+		</tr>
+		</volist>
+	</table>
+	<div class="digg" style='width: 930px; height: 30px; font-size: 12px; text-align: right; margin-top: 10px; margin-bottom: 15px;'>{$pages}</div>
+</body>
+</html>

@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="ie lt-ie9 lt-ie8 lt-ie7 fluid top-full sidebar sidebar-full sticky-sidebar"> <![endif]-->
+<!--[if IE 7]>    <html class="ie lt-ie9 lt-ie8 fluid top-full sticky-top sidebar sidebar-full sticky-sidebar"> <![endif]-->
+<!--[if IE 8]>    <html class="ie lt-ie9 fluid top-full sticky-top sidebar sidebar-full sticky-sidebar"> <![endif]-->
+<!--[if gt IE 8]> <html class="ie gt-ie8 fluid top-full sticky-top sidebar sidebar-full sticky-sidebar"> <![endif]-->
+<!--[if !IE]><!--><html><!-- <![endif]-->
+<head>
+
+
+<script type="text/javascript" src="/bitStyle/js/jquery.js"></script>
+<script type="text/javascript" src="/bitStyle/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/bitStyle/js/modernizr.js"></script>
+<script type="text/javascript" src="/bitStyle/js/selectivizr.js"></script>
+<script type="text/javascript" src="/bitStyle/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/bitStyle/js/scripts.js"></script>
+<script type="text/javascript" src="/bitStyle/js/remaining.js"></script>
+<script type="text/javascript" src="/bitStyle/js/fn_number_format.js"></script>
+<script type="text/javascript" src="/bitStyle/js/9acba5c0d35076a1ccd574dfc21b8b2b.js"></script>
+        <script type="text/javascript">
+            var _gNow = new Date();
+        </script>
+        
+<script type="text/javascript">
+$(document).ready(function() {
+        
+    $('#terminate-account').click(function(e){
+        e.preventDefault();
+        $('#dialog-terminate-account').modal('show');
+    });
+});
+</script>
+
+<script type="text/javascript">
+jQuery(document).ready(function($){
+    var gdBtn = $('#gdBtn');
+    var pdBtn = $('#pdBtn');
+    
+    pdBtn.click(function(){
+        $(this).toggleClass('active');
+        gdBtn.removeClass('active');
+        $('#pdWrap').stop(true, false).slideToggle('fast');
+        $('#gdWrap').stop(true, false).slideUp('fast').removeClass('open');
+        return false;
+    });
+    // if user status is freeze or just unblock and not yet do the maintain
+    gdBtn.click(function(){
+        $(this).toggleClass('active');
+        pdBtn.removeClass('active');
+        $('#gdWrap').stop(true, false).slideToggle('fast');
+        $('#pdWrap').stop(true, false).slideUp('fast').removeClass('open');
+        return false;
+    });
+        
+    // Tooltips
+    $('.tip').tooltip({placement: 'top'});
+    $('.tipr').tooltip({placement: 'right'});
+    $('.tipb').tooltip({placement: 'bottom'});
+    $('.tipl').tooltip({placement: 'left'});
+    
+    $("a[href='#top']").click(function() {
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+        return false;
+    });
+    
+    var _server_time = new Date(),
+        _server_time2 = new Date(),
+        _local_time = new Date(),
+        _local_time2 = new Date();
+        _server_time2 = new Date(),
+        _local_time = new Date(),
+        _local_time2 = new Date();
+    
+    _timer = setInterval(function(){
+        var now = new Date();
+        true_elapsed = Math.round((now.getTime() - _gNow.getTime()) / 1000);        //synchronize & increment 1 second
+        second = _local_time.getTime() + 1000;
+        elapsed = Math.round((second - _local_time2.getTime()) / 1000);
+        if(elapsed < true_elapsed){
+            diff = true_elapsed - elapsed;
+            second += (diff * 1000);
+        }
+        _local_time.setTime(second);
+        second = _server_time.getTime() + 1000;
+        elapsed = Math.round((second - _server_time2.getTime()) / 1000);
+        if(elapsed < true_elapsed){
+            diff = true_elapsed - elapsed;
+            second += (diff * 1000);
+        }
+        _server_time.setTime(second);
+        
+        //update server time
+        date_text = padNumber(_server_time.getHours())+':'+padNumber(_server_time.getMinutes())+':'+padNumber(_server_time.getSeconds());
+        date_text += ' ' + _server_time.getDate()+'/'+(_server_time.getMonth()+1)+'/'+_server_time.getFullYear();
+        $('#server_time_text').html(date_text);
+        //update local time
+        date_text = padNumber(_local_time.getHours())+':'+padNumber(_local_time.getMinutes())+':'+padNumber(_local_time.getSeconds());
+        date_text += ' ' + _local_time.getDate()+'/'+(_local_time.getMonth()+1)+'/'+_local_time.getFullYear();
+        $('#local_time_text').html(date_text);
+    }, 1000);
+    
+    /**
+    * @param number An integer
+    * @return Integer padded with a 0 if necessary
+    */
+    function padNumber(number) {
+        return (number >= 0 && number < 10) ? '0' + number : number;
+    }
+});
+</script>
+
+<script type="text/javascript">
+jQuery(document).ready(function($){
+    var _allsecs = new Array();
+    var _allsecs2 = new Array();
+    var _i18n = {
+        weeks: ['星期', '星期'],
+        days: ['天', '天'],
+        hours: ['小时', '小时'],
+        minutes: ['分', '分'],
+        seconds: ['秒', '秒']
+    };
+    $('.maintain_remain_time').each(function(){
+        var _rid = $(this).attr('id');
+        var _seconds = parseInt($(this).attr('rel'));
+        if(_seconds > 0){
+            $(this).html(
+                remaining.getString(_seconds, _i18n, false)
+            );
+        }
+        else{
+            $(this).html('剩余0天');
+        }
+        _allsecs[_rid] = _seconds;
+        _allsecs2[_rid] = _seconds;
+    });
+    timer = setInterval(function(){
+        var now = new Date();
+        true_elapsed = Math.round((now.getTime() - _gNow.getTime()) / 1000);        $('.maintain_remain_time').each(function(){
+            var _rid = $(this).attr('id');
+            if(typeof _allsecs[_rid] == 'undefined'){
+                _allsecs[_rid] = parseInt($(this).attr('rel'));
+            }
+            _seconds = _allsecs[_rid];
+            if(typeof _allsecs2[_rid] == 'undefined'){
+                _allsecs2[_rid] = parseInt($(this).attr('rel'));
+            }
+            //synchronize
+            _diff_sec = _allsecs2[_rid] - _seconds;
+            if(_diff_sec < true_elapsed){
+                _seconds = _allsecs2[_rid] - true_elapsed;
+            }
+            if(_seconds > 0){
+                $(this).html(
+                    remaining.getString(_seconds, _i18n, false)
+                );
+                _allsecs[_rid] = --_seconds;
+            }
+            else{
+                $("#too_many_user").hide();
+                $("#login_btn").removeAttr("disabled");
+                $(this).html('剩余0天');
+            }
+        });
+    }, 1000);
+});
+</script>
+
+<script type="text/javascript">
+
+</script>
+
+<script type="text/javascript">
+jQuery(document).ready(function($){
+    var pin_message = "此次执行需要{quantity}PIN。";
+        $('#maintain_back_btn, #pd_back_btn, #gd_back_btn').click(function(){
+        $('input[name=__req]').val('start'); //back to starting step
+    });
+    
+    if("0"){
+        $("#pd_pin").text(pin_message.replace("{quantity}", parseInt(0 / 0.5)));
+    }else{
+        $("#pd_pin").text(pin_message.replace("{quantity}", 1));
+    }
+    
+    $("input[name=from_wallet]").change(function(){
+        if($(this).val() == 'cwallet'){
+            $("#minimum_amount").text("BTC0.50000000");
+        }else{
+            $("#minimum_amount").text("BTC0.50000000");
+        }
+    });
+    
+    $("#show_pd_amount").html(format_monetary_value(0));
+    $("#show_gd_amount").html(format_monetary_value(0));
+    
+    $("#pd_amount").keyup(function(){
+        $("#show_pd_amount").html(format_monetary_value($(this).val()));
+        if($(this).val() > 0.5 && $(this).val() % 0.5 == 0){
+            $("#pd_pin").text(pin_message.replace("{quantity}", $(this).val() / 0.5));
+        }else{
+            $("#pd_pin").text(pin_message.replace("{quantity}", 1));
+        }
+    });
+    $("#gd_amount").keyup(function(){
+        $("#show_gd_amount").html(format_monetary_value($(this).val()));
+    });
+    
+    if(false){
+        $("#recalc-ep-message").text("您的额外回酬已计算。请稍候片刻再尝试。");
+        $("#recalc-ep-button").attr("disabled", "disabled");
+        setTimeout(function(){
+            $("#recalc-ep-button").removeAttr("disabled");
+            $("#recalc-ep-message").text("");
+        }, 0);
+    }
+    
+    $("#recalc-ep-button").on("click", function(e){
+        e.preventDefault();
+        $("#recalc-ep-message").text("您的额外回酬已计算成功。如果想再计算，请稍候片刻再尝试。");
+        $(this).attr("disabled", "disabled");
+        $.ajax({
+            url: '?aj=1&type=recalc_user_ep',
+            data: {'uid': 82662186},
+            type: 'post',
+            dataType: 'json',
+            error:function(data){
+                console.log(data);
+            },
+            success: function(data){
+                if(data.percent > 0){
+                    $("#current_ep").html(data.percent);
+                }
+            }
+        });
+        setTimeout(function(){
+            $("#recalc-ep-button").removeAttr("disabled");
+            $("#recalc-ep-message").text("");
+        }, 1800000);
+    });
+});
+</script>
+<link rel="stylesheet" href="/bitStyle/css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="/bitStyle/css/font-awesome.min.css" type="text/css" />
+<link rel="stylesheet" href="/bitStyle/css/main.v001.css" type="text/css" />
+
+
+<title>我的档案 </title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+
+
+<!-- Favicons -->
+<link rel="shortcut icon" href="/bitStyle/favicon.ico" type="image/x-icon">
+
+</head>
+<body class="zh-CN " id="">
+
+<header class="navbar navbar-static-top" id="top" role="header" >
+    <div class="container">
+  <div class="row">
+      <div class="col-lg-4">
+    <div class="navbar-header">
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse" style="font-size: 16px;">菜单 <i class="fa fa-bars" style="color:#003d74;font-size: 20px;"></i></button>
+      <a href="/Home/Index/index.html" class="navbar-brand">
+        <img src="/bitStyle/images/logo_white.png" alt="">
+      </a>
+    </div>
+      </div>
+      <div class="col-lg-8">
+    <div class="row">
+        <div class="col-lg-12">
+      <nav class="collapse navbar-collapse" id="head-navbar-collapse" role="main-navigation">
+          <ul class="nav navbar-nav">
+        <li >
+          <a href="/" class="glyphicons home" ><i></i>首页</a>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" >用户中心<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+          <li><a href="/Home/Info/index.html"><i></i>个人资料</a></li>
+          <li><a href="/Home/Info/pin.html"><i></i>激活码</a></li>
+            <li><a href="/Home/Info/pai.html"><i></i>众筹币</a></li>
+          <li><a href="/Home/Myuser/index.html"><i></i>我的团队</a></li>
+          <li><a href="/Home/Myuser/xzzh.html"><i></i>团队记录</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" >财务中心<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+          <li><a href="/Home/Info/rwhistory.html">我的众筹钱包</a></li>
+          <li><a href="/Home/Index/pdList.html">众筹投资记录</a></li>
+          <li><a href="/Home/Index/gdList.html">获得回报记录</a></li>
+          <li><a href="/Home/Info/cwhistory.html">奖金钱包记录</a></li>
+          <li><a href="/Home/Info/nwhistory.html">总账记录</a></li>
+            </ul>
+        </li>
+        <!--<li ><a href="/Home/Myuser/xzzh.html">提供与得到记录</a></li>-->
+        <li >
+          <a href="/Home/Index/news.html" class="glyphicons home" ><i></i>新闻公告</a>
+        </li>
+
+
+        <li    >
+          <a href="/Home/Index/reg.html" class="glyphicons home" ><i></i>注册新会员<span class="badge"></span></a>
+        </li>
+           <li><a  href="/Home/Myuser/lxwma.html" class="title">获得众筹币</a></li>
+        </ul>
+      </nav>
+        </div>
+        <div class="col-lg-12">
+      <ul class="nav navbar-nav navbar-right" role="sub-navigation">
+        <li class="dropdown" id="lang_nav">
+          <a href="/" class="" data-toggle="dropdown">
+            <span class="language-sel-zh-CN fa-lang">
+            </span>
+            <span class="language-text hidden-xs">
+              简体中文
+            </span>
+          </a>
+          <ul class="dropdown-menu language-box allbox-shadow" role="languageMenu">
+              <li>
+              <a href="/Home/Index/index.html">
+                <span class="language-sel-zh-CN">
+                </span>
+                简体中文
+              </a>
+            </li>
+             <li>
+              <a href="#">
+                <span class="language-sel-en">
+                </span>
+                English
+              </a>
+            </li>  
+             <li>
+              <a href="#">
+                <span class="language-sel-ko-KR">
+                </span>
+                 한국어
+              </a>
+            </li>           
+          </ul>
+        </li>
+        <li class="dropdown" id="wallet_nav">
+          <a href="#" class="" data-toggle="dropdown">
+            <span class="glyphicon glyphicon-usd">
+            </span>
+            <span class="hidden-xs">
+              我的钱包
+            </span>
+          </a>
+          <ul class="walletNav dropdown-menu allbox-shadow clearfix">
+            <li class="clearfix"><a href="/Home/Info/rwhistory.html" >
+              <img src="/bitStyle/images/e-wallet.png" alt="" class="img">
+              <span class="wallet2">
+                <span class="tilte-w">
+                  众筹钱包
+                </span>
+                <strong class="wallet-color">
+                  80RMB
+                </strong>
+              </span></a>
+            </li>
+            <li class="clearfix"><a href="/Home/Info/cwhistory.html">
+              <img src="/bitStyle/images/r-wallet.png" alt="" class="img">
+              <span class="wallet2">
+                经理奖钱包
+                <br>
+                <strong class="wallet-color">
+                  0RMB
+                </strong>
+              </span></a>
+            </li>
+            <li class="clearfix"><a href="/Home/Info/cwhistory.html">
+              <img src="/bitStyle/images/n-wallet.png" alt="" class="img">
+              <span class="wallet2">
+                推荐奖钱包
+                <br>
+                <strong class="wallet-color">
+                  0RMB
+                </strong>
+              </span></a>
+            </li>
+            <li class="clearfix"><a href="/Home/Info/pin.html">
+              <img src="/bitStyle/images/i-wallet.png" alt="" class="img">
+              <span class="wallet2">
+               激活码数量
+                <br>
+                <strong class="wallet-color">
+                 0                </strong>
+              </span></a>
+            </li>
+      <li class="clearfix"><a href="/Home/Info/pai.html">
+              <img src="/bitStyle/images/i-wallet.png" alt="" class="img">
+              <span class="wallet2">
+               众筹币数量
+                <br>
+                <strong class="wallet-color">
+                 0                </strong>
+              </span></a>
+            </li>
+      
+      <li class="clearfix"><a href="/Home/Info/pingjia.html">
+              <img src="/bitStyle/images/i-wallet.png" alt="" class="img">
+              <span class="wallet2">
+               评价得分
+                <br>
+                <strong class="wallet-color">
+                 0                </strong>
+              </span></a>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown" id="profile_nav">
+          <a href="" class="top-button" data-toggle="dropdown">
+            <span class="glyphicon glyphicon-user top-button">
+            </span>
+            <span class="hidden-xs">
+              我的档案
+            </span>
+          </a>
+          <ul class="dropdown-menu allbox-shadow pull-right" id="user-details">
+            <li class="clearfix">
+              <span class="details" style="color:#FFFFFF">
+                编号
+              </span>
+              <span class="count" style="color:#FFFF00">
+                2b7459b9fe              </span>
+            </li>
+            <li class="clearfix">
+              <span class="details"  style="color:#FFFFFF">
+                账号
+              </span>
+              <span class="count" style="color:#FFFF00">
+                15321374612              </span>
+            </li>
+            <li class="clearfix">
+              <span class="details" style="color:#FFFFFF">
+                手机号
+              </span>
+              <span class="count" style="color:#FFFF00">
+               13661384620              </span>
+            </li>
+            <li class="clearfix">
+              <span class="details" style="color:#FFFFFF">
+                钱包
+              </span>
+              <span class="count" style="color:#FFFF00">
+                
+                  80               
+                <script data-cfhash='f9e31' type="text/javascript">
+                  function jsCopy(){
+                    var e=document.getElementById("copy-num");//对象是copy-num1
+                    e.select(); //选择对象
+                    document.execCommand("Copy"); //执行浏览器复制命令
+                    alert("复制成功");
+                }
+                  /* <![CDATA[ */
+                  !
+                  function() {
+                    try {
+                      var t = "currentScript" in document ? document.currentScript: function() {
+                        for (var t = document.getElementsByTagName("script"), e = t.length; e--;) if (t[e].getAttribute("data-cfhash")) return t[e]
+                      } ();
+                      if (t && t.previousSibling) {
+                        var e, r, n, i, c = t.previousSibling,
+                        a = c.getAttribute("data-cfemail");
+                        if (a) {
+                          for (e = "", r = parseInt(a.substr(0, 2), 16), n = 2; a.length - n; n += 2) i = parseInt(a.substr(n, 2), 16) ^ r,
+                          e += String.fromCharCode(i);
+                          e = document.createTextNode(e),
+                          c.parentNode.replaceChild(e, c)
+                        }
+                        t.parentNode.removeChild(t);
+                      }
+                    } catch(u) {}
+                  } ()
+                  /* ]]> */
+                  
+                </script>
+              </span>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="/Home/Myuser/lxwm.html">
+            <span class="glyphicon glyphicon-envelope">
+            </span>
+            <span class="hidden-xs" style="color:red;">
+              提交问题
+            </span>
+                      </a>
+        </li>
+        <li>
+          <a href="/Home/Reg/logout.html">
+            <span class="hidden-xs">
+              退出
+            </span>
+            <span class="glyphicon glyphicon-share-alt">
+            </span>
+          </a>
+        </li>
+      </ul>
+        </div>
+    </div>
+      </div>
+  </div>
+      
+  
+
+  <!--<div id="tuiguang-link" style="height: 45px;">
+    <div class="row">
+        <div class="col-md-12">
+      <div class="input-group">
+  <span class="input-group-addon">推广</span>
+  <input type="text" class="form-control" id="copy-num" value="http://114.55.19.26:38081/Home/Reg/index/uname/15321374612.html">
+  <span class="input-group-addon" onclick="jsCopy()">复制</span>
+</div>
+        </div>
+    </div>
+      </div>-->
+      
+      
+    </div>
+  </header>
+  <script>
+  //var serverTime = '2016-05-03 02:09:18';
+  //var serverTimeDiff = Math.round((new Date(serverTime)).getTime()/1000) - Math.round((new Date()).getTime()/1000);
+  </script>
+  <script src="/cssmmm/jquery.countdown1.js"></script>
+
+<!-- Main Wrapper -->
+<div id="wrapper">
+<div style="/*background-color: #003d74;border-bottom: 1px solid #dedede;margin-bottom: 20px;*/">
+<div class="container" style="padding: 10px 5px;">
+    <div class="pull-left" id="userRank">
+      当月时间2016-04-28 11:55:52-2016-05-28 11:55:52<br />
+      <div style="position: relative"> <font style="font-size:16px; font-weight:bold; color:#003d74;">谷宗伟</font>,级别-<font style="color:#FF0000">M1</font> ! 当月任务:<font style="color:#FF0000">1</font>次众筹<!--<font style="color:#FF0000">3</font>-->,已参与<font style="color:#FF0000">0</font>次。</div>
+    </div>
+    <div class="pull-right mt5 text-right" style="font-size: 11px;">
+  <div style="font-size: 12px;">
+      TOTAL FUNDS:￥284,733,876, MEMBERS:202825  </div>
+  <div>
+      <strong class="mr5">
+      SERVER
+    </strong>
+    <span id="server_time_text">
+       2016-05-03 02:09:18    </span>
+    <strong class="mr5">&nbsp;LOCAL
+    </strong>
+    <span id="local_time_text"></span>
+  </div>
+    </div>
+</div>
+</div>
+    <div class="container">
+      <div class="innerContent">
+  <div id="donationWrap">
+    <div class="row">
+      <div class="col-sm-6">
+        <a class="btn btn-block " id="pdBtn">
+    <span class="p-donation">
+      我要众筹投资
+    </span>
+        </a>
+      </div>
+      <div class="col-sm-6">
+        <a class="btn btn-block " id="gdBtn">
+    <span class="g-donation">
+      我要获得回报
+    </span>
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12" id="pdWrap" style="">
+        <div class="widget widget-body-white">
+    <form method="post" action="/Home/Index/tgbzcl" name="buy_share_form"
+    class="form-horizontal margin-none" id="provide_help">
+      <div class="widget-head widget-head-blue" style="background-color:#003d74;">
+        <h4 class="heading">
+          我要众筹投资项目
+        </h4>
+      </div>
+      <div class="widget-body">
+        <div class="form-group">
+          <p class="help-block apply_tip">
+      请认真填写愿意几天后打出众筹投资款！
+          </p>
+          <label class="col-md-3 control-label">
+      支付方式
+          </label>
+          <div class="col-md-9">
+      <label>
+        <input type="checkbox" value="1" class="ckbox" name="zffs2" checked="">
+        支付宝支付
+      </label>
+      <label>
+        <input type="checkbox" value="1" class="ckbox" name="zffs3" checked="">
+        微信支付
+      </label>
+      <label>
+        <input type="checkbox" value="1" class="ckbox" name="zffs1" checked="">
+        银行支付
+      </label>
+          </div>
+        </div>
+        <div class="form-group">
+      <label class="col-sm-3 control-label">输入众筹币<span class="green">(余下次数0)</span></label>
+          <div class="col-sm-9">
+        <input type="text"  class="form-control get_amount" style="font-size:12px" placeholder="输入众筹币" name="pai" id="pai" value=""  readonly="">
+        <a href="/Home/Myuser/lxwma/" style="color:#FF0000; font-weight:bold;">→点击这里获得众筹币←</a>
+                  做任务可获众筹币。
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">
+      众筹投资金额
+          </label>
+          <div class="col-md-9">
+      <input type="text" class="form-control get_amount" placeholder="输入2000-20000"
+      name="amount" id="amount" autocomplete="off" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">我愿意排队的天数</label>
+          <div class="col-sm-9">
+        <div class="input-group" style="width: 80px;">
+          <span class="input-group-btn">
+            <button class="btn btn-default btn-sm" type="button" id="tsa-sub">-</button>
+          </span>
+            <input type="text" class="form-control" readonly name="tsa" id="tsa" autocomplete="off" required value="0">
+          <span class="input-group-btn">
+            <button class="btn btn-default btn-sm" type="button" id="tsa-add">+</button>
+          </span>
+        </div>
+        <p class="help-block">
+            <input type="checkbox" class="i-checks" name="i-checks" checked="" required style="position: absolute; opacity: 0;">
+     排队期间回报1%/天，排队最多10天，会员自由选择排队天数。打款确认后回报2%-3.2%,不限制回报时间。
+        </p>
+          </div>
+        </div>
+      </div>
+      <footer class="data-footer innerAll half text-right clearfix">
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+          取消
+        </button>
+        <!-- <button type="button" class="btn_next btn-warning btn-sm" data-dismiss="modal"
+        data-toggle="modal" data-target="#myModal2">众筹投资</button>-->
+        <input name="jhwjjc" id="jhwjjc" type="submit" class="btn_next btn-warning btn-sm btn btn-primary "
+        value="众筹投资">
+      </footer>
+    </form>
+        </div>
+      </div>
+      <div class="col-md-12" id="gdWrap" style="">
+        <div class="widget widget-body-white">
+    <form action="/Home/Index/jsbzcl" method="post" name="wallet_transfer_form_head" class="form-horizontal margin-none" id="wallet_transfer_form_head">
+      <fieldset>
+        <div class="widget-head widget-head-blue" style="background-color:#d20000;">
+          <h4 class="heading">
+      我要获得回报
+          </h4>
+        </div>
+        <div class="widget-body">
+          <div class="form-group">
+      <label class="col-md-3 control-label">
+        选择钱包
+      </label>
+      <div class="col-md-9">
+          <select name="wallet_type" id="wallet_type_head">
+        <option value="1" selected>众筹钱包 (余额: 80 RMB)</option>
+        <option value="2">经理奖钱包 (余额: 0 RMB)</option>
+        <option value="3">推荐奖钱包 (余额: 0 RMB)</option>
+          </select>←选择钱包
+      </div>
+          </div>
+          <div class="form-group">
+      <label class="col-md-3 control-label">
+        支付方式
+      </label>
+      <div class="col-md-9">
+        <label>
+          <input type="checkbox" value="1" class="ckbox2" name="zffs2" checked="">
+          支付宝支付
+        </label>
+        <label>
+          <input type="checkbox" value="1" class="ckbox2" name="zffs3" checked="">
+          微信支付
+        </label>
+        <label>
+          <input type="checkbox" value="1" class="ckbox2" name="zffs1" checked="">
+          银行支付
+        </label>                                        
+      </div>
+          </div>
+          <div class="form-group">
+      <label class="col-md-3 control-label">
+        获得回报总额:
+        <span class="ast">
+          *
+        </span>
+      </label>
+      <div class="col-md-9">
+        <input type="text" class="form-control get_amount" placeholder="按说明输入金额" name="get_amount" autocomplete="off" required>
+        <p class="help-block">
+            请输入众筹金额 <span id="tx_themin">2000</span>起,为<span id="tx_thebeishu">500</span>的倍数
+        </p>
+        <p class="help-block">
+          本人正式申明：我已完全了解所有投资可能的风险。我决定参与YBI我必爱创业众筹平台,愿意对自己认可的创业信任进行众筹投资，并愿意为项目的市场营销推广贡献力量。
+        </p>
+      </div>
+          </div>
+        </div>
+        <div class="data-footer innerAll half text-right clearfix">
+      <button value="继续" id="withdraw_btn" type="submit" class="btn btn-primary btn-sm">
+        获得回报
+      </button>
+      <script>
+          $(function () {
+        //选择钱包
+        $("#wallet_type_head").change(function(){
+            var wallet_type = $("#wallet_type_head").val();
+            if(wallet_type==2){
+          //经理奖
+          $("#tx_themin").html('1000');
+          $("#tx_themax").html('0');
+          $("#tx_thebeishu").html('500');
+          document.wallet_transfer_form_head.action = "/Home/Index/jsbzcl1.html";
+            }else if(wallet_type==3){
+          //推荐奖
+          $("#tx_themin").html('1000');
+          $("#tx_themax").html('1000');
+          $("#tx_thebeishu").html('500');
+          document.wallet_transfer_form_head.action = "/Home/Index/jsbzc2.html";
+            }else{
+          //互助奖金
+          $("#tx_themin").html('2000');
+          $("#tx_themax").html('20000');
+          $("#tx_thebeishu").html('500');
+          document.wallet_transfer_form_head.action = "/Home/Index/jsbzcl.html";
+            }
+        });
+        
+        //排队天数
+        $('#tsa-add').on('click', function() {
+            var tsa_val = $('#tsa').val();
+            if(isNaN(tsa_val)){tsa_val = 0;}
+
+            var mat=Math.floor(parseInt(tsa_val)+1);
+            if(mat<0){mat=0;}else if(mat>10){mat=10;}
+            $("#tsa").val(mat);
+              });
+              $('#tsa-sub').on('click', function() {
+            var tsa_val = $('#tsa').val();
+            if(isNaN(tsa_val)){tsa_val = 0;}
+            
+            var mat=Math.floor(parseInt(tsa_val)-1);
+            if(mat<0){mat=0;}else if(mat>10){mat=10;}
+            $("#tsa").val(mat);
+              });
+        $("#tsa").bind("change",function(){
+            if(isNaN($(this).val())){
+          $(this).val(0);
+            }
+            var ths=$(this).val();
+            var mat=Math.floor(ths);
+            if(mat<0){
+              mat=0;
+            }else if(mat>10){
+              mat=10;
+            }
+            //alert(mat);
+            $("#tsa").val(mat);
+        });
+          });
+      </script>
+        </div>
+      </fieldset>
+    </form>
+        </div>
+      </div>
+    </div>
+  </div>
+            <div class="row">
+                <div class="col-md-6 tablet-column-reset">
+        <div class="widget widget-body-white padding-none">
+                        <div class="widget-head">
+                            <h4 class="heading">联系方式</h4>
+                        </div>
+
+        <div class="widget-body">
+            <div class="form-group">
+              <label class="col-md-4 control-label">手机号码(已验证)</label>
+              <div class="col-md-8">
+                13661384620             </div>
+            </div>
+          </div>
+                  
+                    </div>
+        
+                    <div class="widget widget-body-white padding-none">
+                        <div class="widget-head">
+                            <h4 class="heading">帐户详情</h4>
+                        </div>
+                        <form class="form-horizontal margin-none" id="loginForm" method="post" action="/Home/Info/xgzlcl.html" onSubmit="return checkform_profile1();">           
+                            <div class="widget-body">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">真实姓名</label>
+                                    <div class="col-md-8">
+                                        <input type="text" autocomplete="off" value="谷宗伟" id="lid" class="form-control" name="lid" required readonly>
+                                    </div>
+                                </div>
+                                                                <div class="form-group">
+                                    <label class="col-md-4 control-label">手机号码</label>
+                                    <div class="col-md-8">
+                                        <input id="phone1" type="text" autocomplete="off" value="13661384620" id="" class="form-control" name="phone" required readonly>
+                                    </div>
+                                </div>
+                                 <div class="form-group">
+                                    <label class="col-md-4 control-label">登录用户名</label>
+                                    <div class="col-md-8">
+                                        <input type="text" autocomplete="off" value="15321374612" id="usernameq" class="form-control" name="" required readonly>
+                                    </div>
+                                </div>
+                <div class="form-group">
+                                    <label class="col-md-4 control-label">我的支付宝(<span style="color:#FF0000">*建议使用</span>)</label>
+                                    <div class="col-md-8">
+                                        <input type="text" autocomplete="off" value="992268685@qq.com" id="alipay" class="form-control" name="alipay">
+                                    </div>
+                                </div>
+                                 <div class="form-group">
+                                    <label class="col-md-4 control-label">我的微信号</label>
+                                    <div class="col-md-8">
+                                        <input type="text" autocomplete="off" value="" id="wechat" class="form-control" name="wechat">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">银行名称</label>
+                                    <div class="col-md-8">
+                    
+                    <select size="1" id="bank_name" class="form-control" name="bank_name">
+                      <option value="">请选择银行</option>
+                      <option value="中国银行"  >中国银行</option>
+                      <option value="中国工商银行" >中国工商银行</option>
+                      <option value="中国农业银行" >中国农业银行</option>
+                      <option value="中国建设银行" >中国建设银行</option>
+                      <option value="中国光大银行" >中国光大银行</option>
+                      <option value="中国民生银行" >中国民生银行</option>
+                      <option value="中国华夏银行" >中国华夏银行</option>
+                      <option value="中国中信银行" >中国中信银行</option>
+                      <option value="中国交通银行" >中国交通银行</option>
+                      <option value="中国兴业银行" >中国兴业银行</option>
+                      <option value="上海浦东发展银行" >上海浦东发展银行</option>
+                      <option value="中国招商银行" >中国招商银行</option>
+                      <option value="广东发展银行" >广东发展银行</option>
+                      <option value="农村信用社" >农村信用社</option>
+                      <option value="中国邮政储蓄银行" >中国邮政储蓄银行</option>
+                      <option value="其他银行" >其他银行</option>
+                    </select>
+                    
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">银行账户号码</label>
+                                    <div class="col-md-8">
+                                        <input type="text" autocomplete="off" value="6222020200080644491" id="bank_number" class="form-control" name="bank_number">
+                                    </div>
+                                </div>
+                <div class="form-group">
+                                    <label class="col-md-4 control-label">手机验证码</label>
+                                    <div class="col-md-8">
+                    <div class="input-group">
+                      <input type="text" autocomplete="off" value="" id="phonetex1" class="form-control auto-ajax" name="phonetex1">
+                      <span class="input-group-btn"><input name="sendsmsa"  id="sendsmsa" type="button" class="btn btn-primary btn-sm pemailcheck" value="获取短信验证码"></span>
+                      
+                      </div>
+                  </div>
+                  <div style="clear:both;"></div>
+                  <p style="padding-left:200px; padding-top:10px;">
+                  (如果无法发送，请点<a href="javascript:void(0);" onClick="sendsmspg(1);">语音验证</a>.)
+                  
+                  </p>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">二级密码</label>
+                                    <div class="col-md-8">
+                    <input id="trade_pwd22" type="password" class="form-control" autocomplete="off" name="trade_pwd2" required>
+                  </div>
+                                </div>
+                            </div>
+                            <footer class="data-footer innerAll half text-right clearfix">
+                <font style="color:red;">官方提醒：需要手机验证码和二级密码输入都正确才能更改资料!</font>
+                                <button type="submit" class="btn btn-primary btn-sm">更新</button>
+                            </footer>
+                        </form>
+                    </div>     
+                </div>
+                
+                <div class="col-md-6 tablet-column-reset">
+                    <div class="widget widget-body-white padding-none">
+                        <div class="widget-head">
+                            <h4 class="heading">修改登录密码</h4>
+                        </div>
+                        <form class="form-horizontal margin-none" id="" method="post" action="/Home/Info/xgyjmmcl.html" onSubmit="return checkform_profile2();">                         
+                            <div class="widget-body">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="firstname">原密码</label>
+                                    <div class="col-md-8">
+                                        <div class="controls">
+                                            <input id="ymm" type="password" autocomplete="off" class="form-control" name="ymm" value="" required />
+                                                                                    </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="firstname">新密码</label>
+                                    <div class="col-md-8">
+                                        <div class="controls">
+                                            <input id="xmm" type="password" autocomplete="off" class="form-control" name="xmm" value="" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">确认新密码</label>
+                                    <div class="col-md-8"><input class="form-control" autocomplete="off" id="xmmqr" name="xmmqr" value="" type="password" required ></div>
+                                </div>
+                            </div>
+                            <footer class="data-footer innerAll half text-right clearfix">
+                                <button type="submit" class="btn btn-primary btn-sm">更新</button>
+                            </footer>
+                        </form>
+                    </div>
+<div class="widget widget-body-white padding-none">
+                        <div class="widget-head">
+                            <h4 class="heading">修改安全(二级)密码</h4>
+                        </div>
+                        <form class="form-horizontal margin-none" id="" method="post" autocomplete="off" action="/Home/Info/xgejmmcl.html" onSubmit="return checkform_profile3();">
+                            <div class="widget-body">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="firstname">原二级密码</label>
+                                    <div class="col-md-8">
+                                        <div class="controls">
+                                            <input id="yejmm" type="password" class="form-control" autocomplete="off" name="yejmm" value="" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="firstname">新二级密码</label>
+                                    <div class="col-md-8">
+                                        <div class="controls">
+                                            <input type="password" class="form-control" autocomplete="off" id="xejmm" name="xejmm" value="" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">确认新二级密码</label>
+                                    <div class="col-md-8"><input class="form-control" id="xejmmqr" autocomplete="off" name="xejmmqr" value="" type="password" required ></div>
+                                </div>
+                            </div>
+                            <footer class="data-footer innerAll half text-right clearfix">
+                                    <button type="submit" class="btn btn-primary btn-sm">更新</button>
+                            </footer>
+                        </form>
+                    </div>                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    function checkform_profile(){
+    return true;
+    }
+  function checkform_profile1(){
+    var alipay = $("#alipay").val();
+    if(/.*[\u4e00-\u9fa5]+.*$/.test(alipay))
+    {
+      alert("支付宝帐号不能含有汉字！");
+      return false;
+    } 
+    
+    var wechat = $("#wechat").val();
+    if(/.*[\u4e00-\u9fa5]+.*$/.test(wechat))
+    {
+      alert("微信号不能含有汉字！");
+      return false;
+    }
+    
+    var account = $("#bank_number").val();
+    if(isNaN(account))  
+    {
+      alert("银行账户请输入数字！");  
+      return false;  
+    } 
+    
+    
+    return true;
+    }
+  function checkform_profile2(){
+    var account = $("#xmm").val();
+    var accountqr = $("#xmmqr").val();
+    var reg = /[a-zA-Z]+(?=[0-9]+)|[0-9]+(?=[a-zA-Z]+)/g; //要求有英文和数字
+    if( account.length<6 ){
+      alert("密码至少要6位！");
+      return false;
+    }
+    if( account!== accountqr )
+    {
+      alert("密码输入不一致！");
+      return false;
+    }
+    if( !reg.test(account) )
+    {
+      alert("密码要求包含字母和数字！");
+      return false;
+    }
+    return true;
+    }
+  function checkform_profile3(){
+    var account = $("#xejmm").val();
+    var accountqr = $("#xejmmqr").val();
+    var reg = /[a-zA-Z]+(?=[0-9]+)|[0-9]+(?=[a-zA-Z]+)/g; //要求有英文和数字
+    if( account.length<6 ){
+      alert("密码至少要6位！");
+      return false;
+    }
+    if( account!== accountqr )
+    {
+      alert("密码输入不一致！");
+      return false;
+    }
+    if( !reg.test(account) )
+    {
+      alert("密码要求包含字母和数字！");
+      return false;
+    }
+    return true;
+    }
+  
+  var intDiff =0;
+  var intDiff1 =0;
+    function sendsmsp(gi){
+    if(intDiff>0){
+      alert('验证短信已发送请稍后再试!');
+      return ;
+    }
+      if(intDiff<=0){
+      var $mobile = $('#phone').val();
+    var $action = '/Home/Myuser/xmb';
+    $.post($action,{dfzh:$mobile,gi:gi},function(data){
+    if(data.sf == 0){
+      alert(data.nr);
+      document.getElementById('alert_phone').innerHTML = data.nr;
+    }else{
+      document.getElementById('alert_phone').innerHTML = data.nr;
+      intDiff = parseInt(60);//倒计时总秒数量
+      $("#sendsms").attr("disabled", true);
+        var timer = window.setInterval(function(){        
+        $("#sendsms").val(''+intDiff+'秒后重新获取');
+        intDiff--;
+        if(intDiff<0){
+          clearInterval(timer);
+          $("#sendsms").removeAttr("disabled");
+          $("#sendsms").val('获取短信验证码');
+        }
+        }, 1000);
+        var $action = '/Home/Info/getacticode';
+      $.post($action,{dfzh:$mobile,gi:gi},function(data){
+        if(data.sf == 0){
+          alert(data.nr);
+        }
+      });
+    }
+    
+    });
+    
+    
+    
+      
+    
+    
+     }
+    }
+  
+  
+  
+  function sendsmspg(gi){
+    if(intDiff1>0){
+      alert('验证短信已发送请稍后再试!');
+      return ;
+    }
+      if(intDiff1<=0){
+      intDiff1 = parseInt(60);//倒计时总秒数量
+      $("#sendsmsa").attr("disabled", true);
+        var timer = window.setInterval(function(){        
+        $("#sendsmsa").val(''+intDiff1+'秒后重新获取');
+        intDiff1--;
+        if(intDiff1<0){
+          clearInterval(timer);
+          $("#sendsmsa").removeAttr("disabled");
+          $("#sendsmsa").val('获取短信验证码');
+        }
+        }, 1000);
+      var $mobile = '';
+        var $action = '/Home/Info/getacticodea';
+      $.post($action,{dfzh:$mobile,gi:gi},function(data){
+        if(data.sf == 0){
+          alert(data.nr);
+        }
+      });
+     }
+     
+  }
+$(function(){
+   
+   
+   
+
+    $('#sendsms').click(function() {
+    sendsmsp(0);
+    });
+  $('#sendsmsa').click(function() {
+    sendsmspg(0);
+    });
+  
+  
+  
+  $('#ymm').val('');
+  $('#xmm').val('');
+  $('#xmmqr').val('');
+  $('#yejmm').val('');
+  $('#xejmm').val('');
+  $('#xejmmqr').val('');
+  $('#phonetex').val('');
+  $('#phonetex1').val('');
+  $('#trade_pwd22').val('');
+  $('#trade_pwd21').val('');
+  
+  
+  $('#phone').val('13661384620');
+  $('#phone1').val('13661384620');
+  $('#lid').val('谷宗伟');
+  $('#usernameq').val('15321374612');
+  
+  $('#alipay').val('992268685@qq.com');
+  $('#wechat').val('');
+  $('#bank_number').val('6222020200080644491');
+  
+  
+  
+  
+  
+  
+  
+  
+});
+
+
+</script>
+<div>
+    <div class="container">
+  <div class="row">
+      <div class="col-md-12">
+    <!--<p>YBI（Youth Business International）<br>2015-2016  All Right Reserved</p>-->
+    <div class="hidden">
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1257811524'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1257811524%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+    </div>
+      </div>
+  </div>
+    </div>
+</div>
+</body>
+</html>

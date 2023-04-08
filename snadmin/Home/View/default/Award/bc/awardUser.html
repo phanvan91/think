@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="/sncss/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/sncss/js/jquery.js"></script>
+<script>
+$(document).ready(function() {
+	$(".delbut").click(function() {
+		if (confirm("是否删除该广告?")) {
+			$.post("__APP__/Admin/Adv/delAdv/aId/"+ this.id, function(data) {
+				if (data > 0) {
+					alert("删除成功！");
+					window.location.reload();
+				}
+			});
+		}
+	});
+	$("#addBut").click(function() {
+		window.location.href = "__APP__/Admin/Adv/addAdv";
+	});
+	
+});
+</script>
+</head>
+<body>
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="javascript:void(0);">抽奖管理</a></li>
+			<li><a href="javascript:void(0);">抽奖记录列表</a></li>
+		</ul>
+	</div>
+	
+	<table  class="tablelist" style="margin-top:3px;">
+		<thead>
+			<tr>
+			
+				<th width="10%">记录id</th>
+				<th width="10%">中奖用户</th>
+				<th width="10%">中奖等级</th>
+				<th width="10%">中奖类型</th>
+				<th width="10%">中奖奖励数量</th>
+				<th width="10%">中奖时间</th>
+				
+			</tr>
+		</thead>
+		<volist name="list" id="news">
+		<tr>
+		<td class="tdlast">{$news.id}</td>
+		    <td>{$news.uname}</td>
+			<td>{$news.aname}</td>
+			<td>
+				<if condition="$news.atype eq 1">
+				  余额奖励
+				</if>
+				<if condition="$news.atype eq 2">
+				  排单卷奖励
+				</if>
+			</td>
+			<td>{$news.num}</td>
+			<td>{$news.createtime}</td>
+			
+		</tr>
+		</volist>
+	</table>
+	<div class="digg" style='width: 930px; height: 30px; font-size: 12px; text-align: right; margin-top: 10px; margin-bottom: 15px;'>{$pages}</div>
+</body>
+</html>

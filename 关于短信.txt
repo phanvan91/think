@@ -1,0 +1,14 @@
+短信商 http://www.smsbao.com/
+
+
+User/Home/Controller/DuanxinController.class
+
+将第23、24行的账号密码修改成你的，【鸿基创富】修改成你的，这个地方必须与注册短信账户一致，请让短信商核对。                                                                                   
+
+$smsapi = "http://api.smsbao.com/";
+$user = "lsb22222"; //短信平台帐号
+$pass = md5("xth201314"); //短信平台密码
+		$mobile = I('phone'); //号码，以英文逗号隔开
+		$mobileids = ''; //号码唯一编号
+		$code=rand(1000,9000);
+		$content = '【鸿基创富】您的验证码为:'.$code; //内容

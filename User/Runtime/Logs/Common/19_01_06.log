@@ -1,0 +1,12 @@
+[ 2019-01-06T19:24:44+08:00 ] 223.214.155.101 /assets/styles/style.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Assets
+
+[ 2019-01-06T19:24:47+08:00 ] 223.214.155.101 /img/bgs/landscape.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Img
+

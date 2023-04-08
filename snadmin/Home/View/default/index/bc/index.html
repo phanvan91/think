@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>后台管理</title>
+<include file="snadmin/Home/View/default/index/top.html" />
+<include file="snadmin/Home/View/default/index/index.html" />
+<div class="content container_12">
+      <div class="ad-notif-info grid_12"><p><span>位置：<a href="/admin.php/Home/Index/main">首页</a></span>
+    </p></div>
+  <div class="box grid_3">
+        <div class="box-head"><h2><span class="welinfo"> <b>{$Think.session.adminuser}，欢迎使用信息管理系统</b><a href="/admin.php/Home/Index/adminlist">帐号设置</a></span></h2>
+        </div>
+        <div class="box-content">
+          <p>  <div class="uimakerinfo"><b>管理公告</b></div>
+    
+    <ul class="umlist">
+    <li><small>系统开关:<if condition="$zt.zt eq '0'" ><a href="/admin.php/Home/Index/gb">关闭系统</a>
+      <else/><a href="/admin.php/Home/Index/kq">开启系统</a></if><br />
+上次登入IP:<if condition="$scip.ip eq ''" >未登过<else/>{$scip.ip}({$scip.date})</if> <br />
+本次登入IP:{$bcip.ip}({$bcip.date})</small></li>
+   
+    </ul><br><br>
+
+          </p>
+        </div>
+      </div>
+</div>
+
+<div class="footer">
+  <p>Powered by 后台系统</p>
+</div>
+<script type="text/javascript" src="/sncss/js/jquery.js"></script>
+<script type="text/javascript">
+$(function(){	
+	//导航切换
+	$(".menuson li").click(function(){
+		$(".menuson li.active").removeClass("active")
+		$(this).addClass("active");
+	});
+	
+	$('.title').click(function(){
+		var $ul = $(this).next('ul');
+		$('dd').find('ul').slideUp();
+		if($ul.is(':visible')){
+			$(this).next('ul').slideUp();
+		}else{
+			$(this).next('ul').slideDown();
+		}
+	});
+})	
+</script>
+<script> /* SCRIPTS */
+  $(function () {
+      var sin = [], cos = [];
+      for (var i = 0; i < 14; i += 0.5) {
+          sin.push([i, Math.sin(i)]);
+          cos.push([i, Math.cos(i)]);
+      }
+      var plot = $.plot($("#flot-demo"),
+             [ { data: sin, label: "Green", color: "#71a100"}, { data: cos, label: "Blue", color: "#308eef" } ], {
+                 series: {
+                     lines: { show: true },
+                     points: { show: true }
+                 },
+                 grid: { hoverable: true },
+                 yaxis: { min: -1.2, max: 1.2 }
+               });
+      var previousPoint = null;
+      $("#flot-demo").bind("plothover", function (event, pos, item) {
+          if ($("#enablePosition:checked").length > 0) {
+              var str = "(" + pos.x.toFixed(2) + ", " + pos.y.toFixed(2) + ")";
+              $("#hoverdata").text(str);
+          }
+      });
+  });/* for the flot chart demo */
+
+  $('#example').dataTable( {
+      "bJQueryUI": true
+  }); /* For the data tables */
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="/sncss/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/sncss/js/jquery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".click").click(function(){
+  $(".tip").fadeIn(200);
+  });
+  
+  $(".tiptop a").click(function(){
+  $(".tip").fadeOut(200);
+});
+
+  $(".sure").click(function(){
+  $(".tip").fadeOut(100);
+});
+
+  $(".cancel").click(function(){
+  $(".tip").fadeOut(100);
+});
+   $(".btn").click(function(){
+     
+	    window.location.href="/admin.php/Home/Good/goodAdd";
+    })
+});
+
+</script>
+
+
+</head>
+
+<style>
+ 
+ table th,td{text-align:center;}
+</style>
+<body>
+
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">商品管理</a></li>
+    <li><a href="#">商品列表</a></li>
+    </ul>
+    </div>
+    
+    <div class="rightinfo">
+    
+    
+    <div class="rightinfo">
+    
+    <div class="tools">
+    
+    	 <form id="form1" name="form1" method="post" action="/admin.php/Home/Good/goodList">
+	 
+	     <input name="goodname" type="text" class="dfinput" id="user" />
+		 <input name="" type="submit"  class="btn" value="搜索"/>
+		 <input name="" type="button"  class="btn" value="添加商品"/>
+      </form>
+    
+    </div>
+    
+    
+    <table class="tablelist">
+    	<thead>
+    	<tr>
+        <th style="text-align:center;">编号<i class="sort"><img src="/sncss/images/px.gif" /></i></th>
+        <th style="text-align:center;">商品名称</th>
+        <th style="text-align:center;">商品售价</th>
+		<th style="text-align:center;">直推人数</th>
+		<th style="text-align:center;">图片</th>
+        <th style="text-align:center;">添加时间</th>
+        <th style="text-align:center;">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+		
+		<foreach name='list' item='v'>
+        <tr>
+		 <td>{$v.goodid}</td>
+		 <td>{$v.goodname}</td>
+		 <td>{$v.price}</td>
+		 <td>{$v.zhituinum}</td>
+		 <td><img src="{$v.imgpath}" style="width:50px;height:50px;" /></td>
+		 <td>{$v.addtime}</td>
+	      <td><a href="/admin.php/Home/Good/goodAdd/id/{$v.goodid}/" class="tablelink">修改</a>　
+		  <a href="/admin.php/Home/Good/goodDel/id/{$v.goodid}/" class="tablelink">删除</a></td>
+        </tr> 
+       </foreach>
+        </tbody>
+    </table>
+    <style>.pages a,.pages span {
+    display:inline-block;
+    padding:2px 5px;
+    margin:0 1px;
+    border:1px solid #f0f0f0;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border-radius:3px;
+}
+.pages a,.pages li {
+    display:inline-block;
+    list-style: none;
+    text-decoration:none; color:#58A0D3;
+}
+.pages a.first,.pages a.prev,.pages a.next,.pages a.end{
+    margin:0;
+}
+.pages a:hover{
+    border-color:#50A8E6;
+}
+.pages span.current{
+    background:#50A8E6;
+    color:#FFF;
+    font-weight:700;
+    border-color:#50A8E6;
+}</style>
+   
+   <div class="pages"><br />
+
+                        <div align="right">{$page}
+                        </div>
+   </div>
+    
+    
+    <div class="tip">
+    	<div class="tiptop"><span>提示信息</span><a></a></div>
+        
+      <div class="tipinfo">
+        <span><img src="images/ticon.png" /></span>
+        <div class="tipright">
+        <p>是否确认对信息的修改 ？</p>
+        <cite>如果是请点击确定按钮 ，否则请点取消。</cite>
+        </div>
+      </div>
+        
+        <div class="tipbtn">
+        <input name="" type="button"  class="sure" value="确定" />&nbsp;
+        <input name="" type="button"  class="cancel" value="取消" />
+        </div>
+    
+    </div>
+    
+    
+    
+    
+    </div>
+    
+    <script type="text/javascript">
+	$('.tablelist tbody tr:odd').addClass('odd');
+	</script>
+
+</body>
+
+</html>

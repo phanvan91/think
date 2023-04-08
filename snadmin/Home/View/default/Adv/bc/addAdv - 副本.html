@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="/sncss/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/sncss/js/jquery.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/Uploadify/uploadify.css"/>
+<script type="text/javascript" src='__PUBLIC__/Uploadify/jquery.uploadify.min.js'></script>
+<script>
+function save(){
+	var advImg = $("input[name='advImg']").val();
+	
+	if(advImg==""){
+		alert("请上传广告图片！");
+		return false;
+	}
+	
+	var aType = $(".aType").val();
+	if(aType == ''){
+	    alert("请选择广告类型！");
+		return false;
+	}
+	$("#btn").attr('disabled','disabled').die('click');
+}
+
+</script>
+<style>
+.thumbnail img{margin-left:0;}
+.thumbnail{border:0px}
+</style>
+</head>
+<body>
+<div class="place">
+<span>位置：</span>
+<ul class="placeul">
+<li><a href="javascript:void(0);">广告管理</a></li>
+<li><a href="javascript:void(0);">编辑广告</a></li>
+</ul>
+</div>
+<div class="tools">
+</div>
+<form action="/admin.php/Home/Adv/addAdv" method="post" class="definewidth m20" onSubmit="return save()" id="newsForm" enctype="multipart/form-data">
+
+<input type="hidden" name="aId" value="{$aId}" id="aId">
+<table width="90%" border="0" cellpadding="5" cellspacing="1" bgcolor="#CCCCCC" class="tablebg" id="table1">
+  
+  
+  <!--會員折扣-->
+  <!--基本信息-->
+  
+ 
+ 	<tr>
+		<td>广告类型：</td>
+		<td>
+		<select name="aType" class="aType">
+			
+			<option value="">请选择</option>
+			<option value="1" <if condition="$info.atype eq 1">selected="selected"</if>>顶部广告</option>
+			<option value="2" <if condition="$info.atype eq 2">selected="selected"</if>>左边广告</option>
+			<option value="3" <if condition="$info.atype eq 3">selected="selected"</if>>右边广告</option>
+		</select>
+		</td>
+	</tr>
+  
+  <tr>
+    <td bgcolor="#FFFFFF" class="tbkey" >商品图片：</td>
+    <td bgcolor="#FFFFFF" class="tbval"><div class='edit-face'>
+	    				<img src="{$info.advimg}" width='140' height='140' id='face-img'/>
+	    				<p>
+	    					<input type="file" name='face' id='face'/>
+	    				</p>
+   				  <p>
+                            <input type="hidden" name='advImg' id="imgPath" value="{$info.advimg}" />
+			</p>
+		</div></td>
+  </tr>
+  
+  <!--微信填寫-->
+</table>
+</form>
+ <script>
+            jQuery(function(){
+                var $ = jQuery, $list = $('#fileList'),    // 优化retina, 在retina下这个值是2
+                ratio = window.devicePixelRatio || 1,    // 缩略图大小
+                thumbnailWidth = 320* ratio, thumbnailHeight = 80 * ratio,    // Web Uploader实例
+                uploader;
+
+                // 初始化Web Uploader
+                uploader = WebUploader.create({
+                    // 自动上传。
+                    auto: true,
+
+                    // swf文件路径
+                    swf: '__PUBLIC__/webuploader/dist/Uploader.swf',
+
+                    // 文件接收服务端。
+                    server: '__APP__/Admin/News/upload',
+
+                    // 选择文件的按钮。可选。
+                    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+                    pick: '#filePicker',
+
+                    // 只允许选择文件，可选。
+                    accept: {
+                        title: 'Images',
+                        extensions: 'gif,jpg,jpeg,bmp,png',
+                        mimeTypes: 'image/*'
+                    },
+
+                    compress: {
+                        width: 640,
+                        height: 160,
+                        // 图片质量，只有type为`image/jpeg`的时候才有效。
+                        quality: 90,
+                        // 是否允许放大，如果想要生成小图的时候不失真，此选项应该设置为false.
+                        allowMagnify: true,
+                        // 是否允许裁剪。
+                        crop: false,
+                        // 是否保留头部meta信息。
+                        preserveHeaders: true,
+                        // 如果发现压缩后文件大小比原来还大，则使用原来图片
+                        // 此属性可能会影响图片自动纠正功能
+                        noCompressIfLarger: false,
+                        // 单位字节，如果图片大小小于此值，不会采用压缩。
+                        compressSize: 0
+                    }
+                });
+                uploader.on('beforeFileQueued', function(file){
+                    if (file.size > 204800) {
+                        alert('文件大小超过200k,无法上传');
+                        return false;
+                    }
+                    else {
+                        return;
+                    }
+                })
+
+                // 当有文件添加进来的时候
+                uploader.on('fileQueued', function(file){
+                    var $li = $('<div id="' + file.id + '" class="file-item thumbnail">' +
+                    '<img>' +
+                    '</div>'), $img = $li.find('img');
+
+                    $list.append($li);
+                    $("#filePicker").remove();
+                    // 创建缩略图
+                    uploader.makeThumb(file, function(error, src){
+                        if (error) {
+                            $img.replaceWith('<span>不能预览</span>');
+                            return;
+                        }
+
+                        $img.attr('src', src);
+                    }, thumbnailWidth, thumbnailHeight);
+                });
+
+              uploader.on('uploadSuccess',function(file,response){
+            	  console.log(response.imgPath);
+									$("#imgPath").val(response.imgPath);
+								  })
+                // 完成上传完了，成功或者失败，先删除进度条。
+                uploader.on('uploadComplete', function(file){
+					alert("图片上传成功！");
+                    $('#' + file.id).find('.progress').remove();
+                });
+
+                if("{$news.newsId}" != ""){
+          		    $(".webuploader-pick").css("padding","1px");
+          		}
+            });
+        </script>
+</body>
+</html>
